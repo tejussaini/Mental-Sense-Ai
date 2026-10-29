@@ -14,7 +14,7 @@ The trained model is integrated with a FastAPI backend and a web frontend built 
 
 * **Live API:** https://mental-sense-ai-1.onrender.com
 * **Interactive API Documentation:** https://mental-sense-ai-1.onrender.com/docs
-* **Frontend:** Add your deployed frontend URL here.
+* **Frontend:** https://mental-sense-ai-2.onrender.com
 
 ---
 
