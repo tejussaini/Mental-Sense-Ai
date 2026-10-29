@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Screen Time & Wellbeing Predictor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Figtree:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="top">
+  <h1>How is screen time<br>affecting wellbeing?</h1>
+  <p>Describe a student's daily habits and the model estimates a mental health score.</p>
+</header>
+
+<main class="layout">
+  <form id="form" class="panel" novalidate>
+    <section>
+      <h2>About the student</h2>
+      <div class="grid">
+        <label class="field">Age
+          <input type="number" id="age" min="10" max="100" value="20" required>
+        </label>
+        <label class="field">Country
+          <input list="countries" id="country" value="India" required>
+          <datalist id="countries"></datalist>
+        </label>
+      </div>
+      <div class="field"><span class="lbl">Gender</span><div class="chips" data-name="gender"></div></div>
+      <div class="field"><span class="lbl">Academic level</span><div class="chips" data-name="academic_level"></div></div>
+    </section>
+
+    <section>
+      <h2>Social media</h2>
+      <label class="field">Most used platform
+        <select id="platform"></select>
+      </label>
+      <div class="field"><span class="lbl">Main purpose</span><div class="chips" data-name="purpose"></div></div>
+      <div class="sliders">
+        <label class="slider">Daily usage <output id="o-usage"></output>
+          <input type="range" id="usage" min="0" max="24" step="0.5" value="5"></label>
+        <label class="field">Phone unlocks per day
+          <input type="number" id="unlocks" min="0" value="80"></label>
+      </div>
+    </section>
+
+    <section>
+      <h2>Daily routine</h2>
+      <div class="sliders">
+        <label class="slider">Study <output id="o-study"></output>
+          <input type="range" id="study" min="0" max="24" step="0.5" value="4"></label>
+        <label class="slider">Sleep <output id="o-sleep"></output>
+          <input type="range" id="sleep" min="0" max="24" step="0.5" value="7"></label>
+        <label class="slider">Physical activity <output id="o-activity"></output>
+          <input type="range" id="activity" min="0" max="24" step="0.5" value="1"></label>
+      </div>
+      <div class="field"><span class="lbl">Stress level</span><div class="chips stress" data-name="stress"></div></div>
+    </section>
+
+    <details class="api">
+      <summary>Connection settings</summary>
+      <label class="field">API address
+        <input type="url" id="api" value="http://localhost:8000"></label>
+      <label class="check"><input type="checkbox" id="demo"> Use demo estimate (no server needed)</label>
+    </details>
+
+    <button type="submit" id="submit">Predict score</button>
+  </form>
+
+  <aside class="result" aria-live="polite">
+    <div class="sticky">
+      <svg viewBox="0 0 220 130" class="gauge" role="img" aria-label="Score gauge">
+        <path d="M20 110 A90 90 0 0 1 200 110" class="track"/>
+        <path id="arc" d="M20 110 A90 90 0 0 1 200 110" class="fill" pathLength="100" stroke-dasharray="0 100"/>
+      </svg>
+      <div class="score"><span id="score">–</span><small>out of 10</small></div>
+      <h3 id="verdict">Waiting for details</h3>
+      <p id="note">Fill in the form and choose Predict score.</p>
+      <p class="fine">This is a statistical estimate, not a diagnosis. If you're worried about someone's wellbeing, talk to a health professional.</p>
+    </div>
+  </aside>
+</main>
+<script src="script.js"></script>
+</body>
+</html>
